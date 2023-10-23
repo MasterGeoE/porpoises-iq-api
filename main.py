@@ -1,16 +1,27 @@
 from typing import List
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from g4f.Provider import (GptGo)
 import g4f
 from sdxl import ImageGenerator
-import uvicorn
 from model.Message import Message
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
 @app.get('/')
-def root(): 
-    return {'message':'this is PorpoisesIQ api'}
+def root():
+  html_content = """
+  <html>
+      <head>
+          <title>Porpoises API</title>
+      </head>
+      <body>
+          <h1>This is PORPOISES Api Guys</h1>
+      </body>
+  </html>
+  """
+  return HTMLResponse(content=html_content, status_code=200)
 
 @app.post('/v1/chat')
 def chat(message_list: List[Message]):
