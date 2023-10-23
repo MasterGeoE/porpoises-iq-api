@@ -1,6 +1,5 @@
 from typing import List
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request
 from g4f.Provider import (GptGo)
 import g4f
 from sdxl import ImageGenerator
@@ -9,19 +8,12 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
+templates = Jinja2Templates(directory="templates") 
+
 @app.get('/')
-def root():
-  html_content = """
-  <html>
-      <head>
-          <title>Porpoises API</title>
-      </head>
-      <body>
-          <h1>This is PORPOISES Api Guys</h1>
-      </body>
-  </html>
-  """
-  return HTMLResponse(content=html_content, status_code=200)
+def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 
 @app.post('/v1/chat')
 def chat(message_list: List[Message]):
