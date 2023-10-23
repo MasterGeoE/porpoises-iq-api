@@ -1,0 +1,5 @@
+fastapi==0.99.1
+uvicorn
+g4f
+requests
+sdxl
