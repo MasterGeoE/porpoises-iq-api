@@ -3,3 +3,5 @@ uvicorn
 g4f
 requests
 sdxl
+deep-translator
+python-multipart
