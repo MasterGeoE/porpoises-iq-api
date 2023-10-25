@@ -7,14 +7,11 @@ import uvicorn
 from model.Message import Message
 from fastapi.templating import Jinja2Templates
 from system_context import system_context
-from routes.en import api_en
-from routes.km import api_km
+from routes import api
 
 app = FastAPI()
-#English
-app.include_router(api_en.router)
-#Khmer
-app.include_router(api_km.router)
+
+app.include_router(api.router)
 
 
 templates = Jinja2Templates(directory="templates") 
@@ -31,4 +28,4 @@ def image(prompt:str):
     return images
 
 if __name__ == "__main__":
-    uvicorn.run(app, host= "192.168.12.161", port=10000)
+    uvicorn.run(app, host= "0.0.0.0", port=80)
