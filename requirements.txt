@@ -1,4 +1,4 @@
 fastapi==0.99.1
 uvicorn
-g4f
+g4f==0.1.6.6
 deep-translator
